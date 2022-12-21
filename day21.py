@@ -12,7 +12,6 @@ for i, line in enumerate(Path.read_text(Path('input/day21.txt')).strip().split('
 
 def get_number(monkey, monkeys, numbers, operations):
     monkey_index = monkeys.index(monkey)
-
     while numbers[monkey_index] is None:
         for i in range(len(operations)):
             if operations[i] is None:
@@ -23,8 +22,7 @@ def get_number(monkey, monkeys, numbers, operations):
             first_monkey_number, second_monkey_number = numbers[first_monkey_index], numbers[second_monkey_index]
 
             if first_monkey_number is not None and second_monkey_number is not None:
-                operation = [str(first_monkey_number), operations[i][1], str(second_monkey_number)]
-                result = eval("".join(operation))
+                result = eval(str(first_monkey_number) + operations[i][1] + str(second_monkey_number))
                 operations[i] = None
                 numbers[i] = result
     return numbers[monkey_index]
