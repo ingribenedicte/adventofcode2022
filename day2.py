@@ -28,8 +28,6 @@ def score_p2(round):
         you = key_list[val_list.index(opponent)]
         return score_shapes_p2.get(you) + 6
 
-score_p1 = sum(score_p1(round.split(' ')) for round in Path.read_text(Path('input/day2.txt')).strip().split('\n'))
-score_p2 = sum(score_p2(round.split(' ')) for round in Path.read_text(Path('input/day2.txt')).strip().split('\n'))
-
-print(f"Answer Part One: {score_p1}")
-print(f"Answer Part Two: {score_p2}")
+input = Path.read_text(Path('input/day2.txt')).strip().split('\n')
+print(f"Answer Part One: {sum(score_p1(round.split(' ')) for round in input)}")
+print(f"Answer Part Two: {sum(score_p2(round.split(' ')) for round in input)}")
