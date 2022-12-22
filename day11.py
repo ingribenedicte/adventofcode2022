@@ -27,6 +27,7 @@ def inspection(item, operation):
     return item
 
 n_inspections = [0 for i in range(len(monkeys))]
+
 for round in range(20):
     for i in range(len(monkeys)):
         monkey, items, operation, divisor, if_true_monkey, if_false_monkey = monkeys[i], items_lists[i], operations[i], tests[i], if_true[i], if_false[i]
@@ -48,6 +49,7 @@ n_inspections.sort()
 print(f"Answer Part One: {n_inspections[-1] * n_inspections[-2]}")
 
 items_lists = initial_items_lists.copy()
+
 common_divisor = 1
 for divisor in tests:
     common_divisor *= divisor
