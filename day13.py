@@ -13,34 +13,17 @@ def process_lists(left, right):
     for i in range(min(len(left), len(right))):
         l_val, r_val = left[i], right[i]
 
-        # compare integers
         if type(l_val) == type(r_val) and type(l_val) == int:
-            if l_val < r_val:
-                return True
-            elif l_val > r_val:
-                return False
+            if abs(r_val - l_val) > 0:
+                return True if l_val < r_val else False
 
-        # compare lists
-        elif type(l_val) == type(r_val) and type(l_val) == list:
+        else:
+            l_val = [l_val] if type(l_val) == int else l_val
+            r_val = [r_val] if type(r_val) == int else r_val
+
             correct_order = process_lists(l_val, r_val)
-            if correct_order:
-                return True
-            elif correct_order == False:
-                return False
-
-        # different types
-        elif type(l_val) == list and type(r_val) == int:
-            correct_order = process_lists(l_val, [r_val])
-            if correct_order:
-                return True
-            elif correct_order == False:
-                return False
-        elif type(l_val) == int and type(r_val) == list:
-            correct_order = process_lists([l_val], r_val)
-            if correct_order:
-                return True
-            elif correct_order == False:
-                return False
+            if correct_order is not None:
+                return True if correct_order else False
 
     if len(left) < len(right):
         return True
