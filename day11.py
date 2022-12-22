@@ -28,7 +28,6 @@ def inspection(item, operation):
     return item
 
 n_inspections = [0 for i in range(len(monkeys))]
-
 for round in range(20):
     for i in range(len(monkeys)):
         monkey, items, operation, divisor, if_true_monkey, if_false_monkey = monkeys[i], items_lists[i], operations[i], tests[i], if_true[i], if_false[i]
