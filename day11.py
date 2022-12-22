@@ -17,6 +17,7 @@ for i, line in enumerate(Path.read_text(Path('input/day11.txt')).split('\n')):
         if_false.append(int(line.strip().split(' ')[-1]))
 
 initial_items_lists = copy.deepcopy(items_lists)
+
 def inspection(item, operation):
     val = item if operation[1] == 'old' else int(operation[1])
     if operation[0] == '*':
