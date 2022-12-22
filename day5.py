@@ -1,4 +1,5 @@
 from pathlib import Path
+import copy
 
 input = Path.read_text(Path('input/day5.txt')).split('\n')
 ind = input.index('')
@@ -14,6 +15,8 @@ for i in range(n_stacks):
         if stacks_horizontal[j][i] != '':
             stacks[i].append(stacks_horizontal[j][i])
 
+initial_stacks = copy.deepcopy(stacks)
+
 for step in input[ind+1:]:
     step = str.split(step, ' ')
     n, f, t = int(step[1]), int(step[3]), int(step[5])
@@ -24,3 +27,15 @@ for step in input[ind+1:]:
 
 top_crates = "".join([stack[-1][1] for stack in stacks])
 print(f"Answer Part One: {top_crates}")
+
+stacks = initial_stacks
+for step in input[ind+1:]:
+    step = str.split(step, ' ')
+    n, f, t = int(step[1]), int(step[3]), int(step[5])
+    chunk = []
+    for i in range(n):
+        chunk.insert(0, stacks[f-1].pop())
+    stacks[t-1].extend(chunk)
+
+top_crates = "".join([stack[-1][1] for stack in stacks])
+print(f"Answer Part Two: {top_crates}")
