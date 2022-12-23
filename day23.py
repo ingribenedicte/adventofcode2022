@@ -35,12 +35,7 @@ def propose_move(adjacency, adjacent_elves, direction_index):
 
 def move_elves(elves, propositions):
     propostions_list = list(propositions.values())
-
-    illegal_moves = set()
-    for value in propostions_list:
-        if propostions_list.count(value) > 1 or value is None:
-            illegal_moves.add(value)
-
+    illegal_moves = {value for value in propostions_list if propostions_list.count(value) > 1 or value is None}
     propostions = {key: val for key, val in propositions.items() if val not in illegal_moves}
 
     for position, new_position in propostions.items():
@@ -72,7 +67,7 @@ print(f"Answer Part One: {(max_x - min_x + 1) * (max_y - min_y + 1) - len(elves)
 
 elves = initial_elves
 i = 0
-while i < 3000:
+while i < 10000:
     direction_index = i%4
     propostions = dict()
 
