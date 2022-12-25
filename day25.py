@@ -30,6 +30,7 @@ def decimal_to_snafu(decimal):
         snafu = '2'
         decimal -= 2 * 5 ** max_exponent
 
+    # find rest of the string
     snafu_str_options = ['=', '-', '0', '1', '2']
     for exponent in range (max_exponent - 1, -1, -1):
         options = [- 2 * 5 ** exponent, - 1 * 5 ** exponent, 0, 5 ** exponent, 2 * 5 ** exponent]
