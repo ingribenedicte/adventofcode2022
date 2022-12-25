@@ -10,29 +10,25 @@ def snafu_to_decimal(snafu):
         decimal += multiplicator * 5 ** i
     return decimal
 
-def find_maximal_exponent(decimal):
+def decimal_to_snafu(decimal):
+    # find the maximal exponential to be part of SNAFU string
     last_distance_lower, last_distance_higher = decimal, decimal
     exponent = 0
     close = False
     while not close:
         distance_lower, distance_higher = abs(decimal - 5 ** exponent), abs(decimal - 2 * 5 ** exponent)
-
         if min(distance_lower, distance_higher) > min(last_distance_lower, last_distance_higher):
             break
-
         last_distance_lower, last_distance_higher = distance_lower, distance_higher
         exponent += 1
 
-    snafu = '1' if last_distance_lower < last_distance_higher else '2'
-    return exponent - 1, snafu
-
-def decimal_to_snafu(decimal):
-    max_exponent, snafu = find_maximal_exponent(decimal)
-
-    if snafu == '2':
-        decimal -= 2 * 5 ** max_exponent
-    elif snafu == '1':
+    max_exponent = exponent - 1
+    if last_distance_lower < last_distance_higher:
+        snafu = '1'
         decimal -= 5 ** max_exponent
+    else:
+        snafu = '2'
+        decimal -= 2 * 5 ** max_exponent
 
     snafu_str_options = ['=', '-', '0', '1', '2']
     for exponent in range (max_exponent - 1, -1, -1):
