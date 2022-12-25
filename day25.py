@@ -15,14 +15,12 @@ def find_maximal_exponent(decimal):
     exponent = 0
     close = False
     while not close:
-        distance_lower = abs(decimal - 5 ** exponent)
-        distance_higher = abs(decimal - 2 * 5 ** exponent)
+        distance_lower, distance_higher = abs(decimal - 5 ** exponent), abs(decimal - 2 * 5 ** exponent)
 
         if min(distance_lower, distance_higher) > min(last_distance_lower, last_distance_higher):
             break
 
-        last_distance_lower = distance_lower
-        last_distance_higher = distance_higher
+        last_distance_lower, last_distance_higher = distance_lower, distance_higher
         exponent += 1
 
     snafu = '1' if last_distance_lower < last_distance_higher else '2'
